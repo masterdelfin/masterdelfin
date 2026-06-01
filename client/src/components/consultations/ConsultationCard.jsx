@@ -26,7 +26,7 @@ export default function ConsultationCard({ consultation, onEdit, onDelete }) {
         <div className="consultation-card-meta">
           <span className="consultation-date">{formatDate(consultation.visit_date)}</span>
           <div className="consultation-badges">
-            {consultation.is_draft && <Badge variant="draft">Borrador</Badge>}
+            {!!consultation.is_draft && <Badge variant="draft">Borrador</Badge>}
             {prescriptions.length > 0 && (
               <Badge variant="primary">
                 {prescriptions.length} receta{prescriptions.length !== 1 ? 's' : ''}

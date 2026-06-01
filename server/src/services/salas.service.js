@@ -44,7 +44,19 @@ function list(doctorId) {
     ORDER BY s.updated_at DESC
   `).all(doctorId);
 
-  return rows;
+  return rows.map(row => {
+    const { patient_first_name, patient_last_name, patient_date_of_birth, patient_gender, ...salaFields } = row;
+    return {
+      ...salaFields,
+      patient: {
+        id: row.patient_id,
+        first_name: patient_first_name,
+        last_name: patient_last_name,
+        date_of_birth: patient_date_of_birth,
+        gender: patient_gender,
+      }
+    };
+  });
 }
 
 function create(doctorId, data) {
